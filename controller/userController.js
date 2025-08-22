@@ -23,9 +23,9 @@ module.exports.getAllUsers = async(req,res)=>{
 module.exports.getUserById = async(req,res)=>{
     try {
         //logique
-        //const id = req.body
-        const id = req.params
-        //const id = req.query 
+        //const id = req.body;
+        const {id} = req.params;
+        //const id = req.query; 
         
         const UserList = await userModel.findById(id)
         res.status(200).json({UserList});
@@ -35,7 +35,7 @@ module.exports.getUserById = async(req,res)=>{
     }
 };
 
-module.exports.aadPatient= async(req,res)=>{
+module.exports.addPatient= async(req,res)=>{
     try {
         //logique
         const { username, email,password , age}=req.body 
@@ -43,13 +43,13 @@ module.exports.aadPatient= async(req,res)=>{
         const Patient = new userModel({username, email,password , age , role})
         // const Patient = new userModel(req.body)
         const addUser =await Patient.save()
-        res.status(200).json({}) ;
+        res.status(200).json({message : "Patient ajouté avec succès",addPatient}) ;
     } catch (error) {
         res.status(500).json({message: error.message}); 
     }
 };
 
-module.exports.aadAdmin= async(req,res)=>{
+module.exports.addAdmin= async(req,res)=>{
     try {
         //logique
         const { username, email,password }=req.body 
@@ -57,7 +57,7 @@ module.exports.aadAdmin= async(req,res)=>{
         const Admin = new userModel({username, email,password  , role})
         // const Admin = new userModel(req.body)
         const addUser =await Admin.save()
-        res.status(200).json({}) ;
+        res.status(200).json({message :"Admin ajouté avec succès", addAdmin}) ;
     } catch (error) {
         res.status(500).json({message: error.message}); 
     }
