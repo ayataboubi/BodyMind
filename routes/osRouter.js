@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
 //const os = require('os')
-const osController= require('../controller/osController')
+const osController= require('../controllers/osController')
 /* GET home page. */
 router.get('/getOsInformation', osController.getOsInformation ) 
 //    try {
 //        const osInformation={ 
-//            hostaname : os.hostname(),
+//            hostname : os.hostname(),
 //            platform : os.platform(),
 //            type : os.type(),
 //            release : os.release(),
