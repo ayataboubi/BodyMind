@@ -84,7 +84,8 @@ app.use(morgan('dev'));
 
  
  require('./config/db');
-
+var usersRouter = require('./routes/userRouter');
+app.use('/users', usersRouter);
 
 //PORT
 app.listen(PORT, (error) =>{

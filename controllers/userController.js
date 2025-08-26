@@ -3,6 +3,7 @@ const userModel = require('../models/userModel')
 module.exports.esmFonction= async(req,res)=>{
     try {
         //logique
+
         res.status(200).json({}) ;
     } catch (error) {
         res.status(500).json({message: error.message}); 
@@ -88,7 +89,7 @@ module.exports.getUserById = async(req,res)=>{
 module.exports.addPatient= async(req,res)=>{
     try {
         //logique
-        const { username, email,password , age}=req.body 
+        const { username, email, password , age}=req.body 
         const role ='Patient'
         const Patient = new userModel({username, email,password , age , role})
         // const Patient = new userModel(req.body)
