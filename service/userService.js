@@ -8,4 +8,4 @@ module.exports.getData = async () =>{
     catch (error) {
          throw new Error (' Erreur lors de la récuperrationdes osInformation');
     }
-}
+}      

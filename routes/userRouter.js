@@ -13,7 +13,7 @@ router.get('/getUserById/:id', userController.getUserById)
 router.post('/addPation/', userController.addPatient)
 router.post('/addPatientWithFile',uploadfile.single("image_User") ,userController.addPatientWithFile)
 router.post('/addAdmin/', userController.addAdmin) 
-router.delete('/DeletUserById/:id', userController.DeletUserById) 
+router.delete('/DeletUserById/:id', userController.DeleteUserById) 
 
 
 
