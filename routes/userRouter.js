@@ -12,7 +12,7 @@ router.get('/searchUsersByUserName',userController.searchUsersByName );
 router.get('/getUserByAge/:age',userController.getUserByAge );
 router.get('/getUserByAgeBetweenXAndY',userController.getUserByAgeBetweenXAndY);
 router.get('/getUserById/:id', userController.getUserById);
-router.post('/addPatientWithFile',uploadfile.single("image_User") ,userController.addPatientWithFile);
+// router.post('/addPatientWithFile',uploadfile.single("image_User") ,userController.addPatientWithFile);
 router.delete('/DeletUserById/:id', userController.DeleteUserById);
 
 

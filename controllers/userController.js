@@ -1,4 +1,4 @@
-const userModel = require('../models/userModel')
+const userModel = require('../models/userModel');
 
 module.exports.esmFonction= async(req,res)=>{
     try {
@@ -14,7 +14,13 @@ module.exports.getAllUsers = async(req,res)=>{
     try {
         //logique
         const UserList = await userModel.find()
+        console.log(UserList)
+        if (UserList) {
         res.status(200).json({UserList});
+          
+        } else {
+          res.json('no user has been found')
+        }
 
     } catch (error) {
         res.status(500).json({message: error.message}); 
@@ -94,7 +100,7 @@ module.exports.addPatient= async(req,res)=>{
         const Patient = new userModel({username, email,password , age , role})
         // const Patient = new userModel(req.body)
         const addUser = await Patient.save()
-        res.status(200).json({message : "Patient ajouté avec succès","data" : addUser}) ;
+        res.json({message : "Patient ajouté avec succès","data" : addUser}) ;
     } catch (error) {
         res.status(500).json({message: error.message}); 
     }
@@ -155,37 +161,71 @@ module.exports.searchUsersByName = async (req, res) => {
   }
 };
 
-module.exports.addPatientWithFile= async(req,res)=>{
-    try {
-        //logique
-        // const { username, email,password , age}=req.body 
-        const userData  ={...req.body}
-        if(req.file){
-          const {filename}=req.file;
-          userData.image_User = filename
-          userData.role = "Patient"
+// module.exports.addPatientWithFile= async(req,res)=>{
+//     try {
+//         //logique
+//         // const { username, email,password , age}=req.body 
+//         const userData  ={...req.body}
+//         if(req.file){
+//           const {filename}=req.file;
+//           userData.image_User = filename
+//           userData.role = "Patient"
 
-        }
-        console.log("userData",userData)
-        const Patient = new userModel(userData)
-        // const Patient = new userModel(req.body)
-        const addUser =await Patient.save()
-        res.status(200).json({message : "Patient ajouté avec succès",addPatient}) ;
-    } catch (error) {
-        res.status(500).json({message: error.message}); 
-    }
-};
+//         }
+//         console.log("userData",userData)
+//         const Patient = new userModel(userData)
+//         // const Patient = new userModel(req.body)
+//         const addUser =await Patient.save()
+//         res.status(200).json({message : "Patient ajouté avec succès",addPatient}) ;
+//     } catch (error) {
+//         res.status(500).json({message: error.message}); 
+//     }
+// };
 
 module.exports.updateUser= async(req,res)=>{
     try {
         //logique
         const id = req.params.id
-        const { username, email, password , age }=req.body 
-        console.log()
-        const Patient = new userModel({username, email,password , age , role})
-        // const Patient = new userModel(req.body)
-        const addUser = await Patient.save()
-        res.status(200).json({message : "Patient ajouté avec succès","data" : addUser}) ;
+        const { username , age }=req.body 
+        const updateUser = await userModel.findByIdAndUpdate(id,{$set :{username , age },
+         });    
+         // const Patient = new userModel(req.body)
+        res.status(200).json(updateUser) ;
+    } catch (error) {
+        res.status(500).json({message: error.message}); 
+    }
+};
+
+const bcrypt = require("bcryptjs");
+
+module.exports.updatePassword= async(req,res)=>{
+    try {
+        //logique
+        const id = req.params.id;
+        const { password }=req.body;
+
+        const salt = await bcrypt.genSalt();
+        passwordHashed = await bcrypt.hash(password , salt);
+        const updatedUser = await userModel.findByIdAndUpdate(id,
+          {$set :{password : passwordHashed },
+        });    
+         // const Patient = new userModel(req.body)
+        res.status(200).json(updateUser) ;
+    } catch (error) {
+        res.status(500).json({message: error.message}); 
+    }
+};
+
+module.exports.updateRoleByAdminToAdmin = async(req,res)=>{
+    try {
+        //logique
+        const id = req.params.id;
+        
+        const updatedUser = await userModel.findByIdAndUpdate(id,
+          {$set :{role : "admin" },
+        });    
+         // const Patient = new userModel(req.body)
+        res.status(200).json(updateUser) ;
     } catch (error) {
         res.status(500).json({message: error.message}); 
     }

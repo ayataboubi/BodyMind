@@ -87,6 +87,11 @@ app.use(morgan('dev'));
 var usersRouter = require('./routes/userRouter');
 app.use('/users', usersRouter);
 
+require ('./config/db');
+var ProfilSanteRouter = require('./routes/ProfilSanteRouter');
+app.use("/api/ProfilSante" , ProfilSanteRouter);
+
+
 //PORT
 app.listen(PORT, (error) =>{
     if(!error)
