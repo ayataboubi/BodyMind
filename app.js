@@ -84,13 +84,28 @@ app.use(morgan('dev'));
 
  
  require('./config/db');
-var usersRouter = require('./routes/userRouter');
+var usersRouter = require('./routes/usersRouter');
 app.use('/users', usersRouter);
 
 require ('./config/db');
 var ProfilSanteRouter = require('./routes/ProfilSanteRouter');
-app.use("/api/ProfilSante" , ProfilSanteRouter);
+app.use('/api/ProfilSante' , ProfilSanteRouter);
 
+require ('./config/db');
+var SommeilRouter = require('./routes/SommeilRouter');
+app.use('/api/Sommeil' , SommeilRouter);
+
+require ('./config/db');
+var HydratationRouter = require ('./routes/HydratationRouter');
+app.use('/api/Hydratation',HydratationRouter);
+
+require('/config/db');
+var ActiviteRouter = require ('./routes/ActiviteRouter');
+app.use('/api/Activite', ActiviteRouter);
+
+require('/config/db');
+var BienEtreRouter = require('/routes/BienEtreRouter');
+app.use('/api/BienEtre',BienEtreRouter);
 
 //PORT
 app.listen(PORT, (error) =>{
@@ -100,3 +115,7 @@ app.listen(PORT, (error) =>{
         console.log("Error occurred, server can't start", error);
     }
 );
+
+
+
+
