@@ -1,8 +1,9 @@
-const userModel = require ("../models/ProfilSanteModel");
+const ProfilSanteModel = require("../models/ProfilSanteModel");
+const ProfilSante = require ("../models/ProfilSanteModel");
 
 module.exports.getData = async () =>{
     try {
-        const ProfilSanteList= await ProfilSante.find() 
+        const ProfilSanteList= await ProfilSanteModel.find() 
         return  ProfilSanteList  
      }
     catch (error) {
