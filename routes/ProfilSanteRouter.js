@@ -1,5 +1,4 @@
 const express = require("express");
-const ProfillSanteModel = require("../models/ProfilSanteModel");
 const router = express.Router();
 const ProfillSanteController = require("../controllers/ProfilSanteController");
 

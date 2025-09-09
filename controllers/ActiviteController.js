@@ -12,8 +12,9 @@ module.exports.createActivite = async (req, res) => {
 
 module.exports.getAllActivite = async (req, res) => {
   try {
-    const activites = await Activite.find().populate("profilSanteId");
-    res.json(activites);
+    const activites = await Activite.find()/*.populate("profilSanteId")*/;
+    console.log(activites)
+    res.status(200).send(activites);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

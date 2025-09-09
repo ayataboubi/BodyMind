@@ -6,6 +6,8 @@ const userSchema = new mongoose.Schema({
         type: String,
          required:true,
         },
+    ProfilSante: { type: mongoose.Schema.Types.ObjectId, ref: "ProfilSante" }, // relation 1-1
+
 
     email:{
         type: String,

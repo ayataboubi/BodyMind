@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 
 const ProfillSanteSchema = new mongoose.Schema({
-     userId: {type : Number},
+
+      userId: {type : Number},
       age : {type : Number},
       sexe :{type : String , enum:["Homme" , "Femme"]},
       taille :{type : Number},
@@ -11,6 +12,7 @@ const ProfillSanteSchema = new mongoose.Schema({
       objectifCalories: {type: Number},
       objectifHydratation :{type: Number},
       objectifActivite:{type: Number},
+      userModel: { type: mongoose.Schema.Types.ObjectId, ref: "userModel" } // relation inverse
 
 });
 

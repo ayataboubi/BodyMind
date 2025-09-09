@@ -34,7 +34,7 @@ module.exports.getAllProfils= async(req,res)=>{
 module.exports.getProfilById= async(req,res)=>{
     try {
         //logique
-        const profil = await ProfilSante.findById(req.parms.id).populate("userId");
+        const profil = await ProfilSante.findById(req.parms.id);//.populate("userId");
         res.status(200).json({}) ;
     } catch (error) {
         res.status(500).json({message: error.message}); 
