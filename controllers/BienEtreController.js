@@ -5,8 +5,8 @@ module.exports.createBienEtre = async (req, res) => {
     const bienEtre = new BienEtre(req.body);
     await bienEtre.save();
     res.status(201).json(bienEtre);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
   }
 };
 
@@ -19,7 +19,7 @@ module.exports.getAllBienEtre = async (req, res) => {
   }
 };
 
-module.xports.getBienEtreById = async (req, res) => {
+module.exports.getBienEtreById = async (req, res) => {
   try {
     const bienEtre = await BienEtre.findById(req.params.id).populate("profilSanteId");
     if (!bienEtre) return res.status(404).json({ message: "Enregistrement non trouvé" });

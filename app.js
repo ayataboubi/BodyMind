@@ -101,9 +101,9 @@ require('./config/db');
 var ActiviteRouter = require ('./routes/ActiviteRouter');
 app.use('/api/Activite', ActiviteRouter);
 
-// require('./config/db');
-// var BienEtreRouter = require('/routes/BienEtreRouter');
-// app.use('/api/BienEtre',BienEtreRouter);
+require('./config/db');
+var BienEtreRouter = require('./routes/BienEtreRouter');
+app.use('/api/BienEtre',BienEtreRouter);
 
 //PORT
 app.listen(PORT, (error) =>{

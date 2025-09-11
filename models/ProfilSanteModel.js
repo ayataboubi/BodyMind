@@ -14,6 +14,7 @@ const ProfillSanteSchema = new mongoose.Schema({
       objectifActivite:{type: Number},
       userModel: { type: mongoose.Schema.Types.ObjectId, ref: "userModel" } // relation inverse
 
-});
+},
+{ versionKey: false });
 
 module.exports = mongoose.model("ProfilSante", ProfillSanteSchema);

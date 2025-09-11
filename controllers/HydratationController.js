@@ -3,13 +3,13 @@ const Hydratation = require("../models/HydratationModel");
 module.exports.createHydratation = async (req, res) => {
     try {
        console.log("recu body:", req.body);
-        const hydratation = new Hydratation(req.body);
-        await hydratation.save();
-        res.status(201).json(Hydratation);
+          
+       const hydratation = await Hydratation.create(req.body);
+        res.status(201).send({message : "insertion éffectuez avec success " , data :  hydratation});
         
     } catch (error) {
-      console.log("errur de create Hydratation",error.message);
-        res.status(400).json({message: error.message});
+      console.log("erreur de create Hydratation", error.message);
+        res.status(500).json({message: error.message});
         
     }
 };
