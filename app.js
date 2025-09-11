@@ -17,11 +17,7 @@
 // // const { connecttoMongoDb } = require('./config/db');
 // var app = express();
 
-// // app.use(logger('dev'));
-// // app.use(express.json());
-// // app.use(express.urlencoded({ extended: false }));
-// // app.use(cookieParser());
-// // app.use(express.static(path.join(__dirname, 'public')));
+
 
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
@@ -57,21 +53,30 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
- 
-
+ var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var path = require('path');
+const http = require('http');
+ var createError = require('http-errors');
 
 //start a new Express application
 const app = express();
-
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 // connect to database
-const PORT = 5000  
+const PORT = 5001  
  
 
 app.get('/', (req, res)=>{
-     
-    res.status(200);
+     try {
+        res.status(200);
     res.send("Welcome to root URL of Server");
-
+     } catch (error) {
+        resourceLimits.status(500).send(error)
+     }
 });
  
 
@@ -112,7 +117,9 @@ app.listen(PORT, (error) =>{
     else 
         console.log("Error occurred, server can't start", error);
     }
+
 );
+
 
 
 

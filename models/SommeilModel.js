@@ -5,6 +5,8 @@ const SommeilSchema = new mongoose.Schema({
 
     dureeSommeil : { type: Number , required: true },
     qualiteSommeil : { type : String , enum: ["très bonne","Bonne","Moyenne","Mauvaise"]},
+    userModel: { type: mongoose.Schema.Types.ObjectId, ref: "User" } // relation inverse
+    
 
 },
 { versionKey: false });

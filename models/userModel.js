@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
+const SommeilModel = require("./SommeilModel");
 
 const userSchema = new mongoose.Schema({
     username:{
@@ -45,7 +46,18 @@ const userSchema = new mongoose.Schema({
     isbloked:{
         type:Boolean,
         default:false
-    }
+    },
+    profilSante: { type: mongoose.Schema.Types.ObjectId, ref: "ProfilSante" },
+    SommeilModel: { type: mongoose.Schema.Types.ObjectId, ref: "SommeilSante" },
+    HydratationModel: { type: mongoose.Schema.Types.ObjectId, ref: "HydratationModel" },
+    BienEtreModel: { type: mongoose.Schema.Types.ObjectId, ref: "BienEtreModel" },
+    ActiviteModel: { type: mongoose.Schema.Types.ObjectId, ref: "ActiviteModel" },
+
+
+
+
+    
+
 
 },
     { timestamps: true }
@@ -59,8 +71,7 @@ userSchema.pre('save',async function (next) {
         // User.statu= false 
         next(); 
     } catch (error) {
-      next(error)  
-        
+      next(error)     
     }
     
 },

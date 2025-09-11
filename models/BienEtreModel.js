@@ -6,7 +6,9 @@ const BienEtreSchema = new mongoose.Schema({
   humeur: { type: String, enum: ["Très heureux", "Heureux", "Neutre", "Stressé", "Triste"] },
   niveauStress: { type: Number, min: 0, max: 10 }, // 0 = relax, 10 = stress max
   energie: { type: Number, min: 0, max: 10 }, // niveau d’énergie
-  commentaire: { type: String }
+  commentaire: { type: String },
+  userModel: { type: mongoose.Schema.Types.ObjectId, ref: "User" } // relation inverse
+  
 },
 { versionKey: false });
 

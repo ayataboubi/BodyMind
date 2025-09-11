@@ -12,7 +12,7 @@ const ProfillSanteSchema = new mongoose.Schema({
       objectifCalories: {type: Number},
       objectifHydratation :{type: Number},
       objectifActivite:{type: Number},
-      userModel: { type: mongoose.Schema.Types.ObjectId, ref: "userModel" } // relation inverse
+      userModel: { type: mongoose.Schema.Types.ObjectId, ref: "User" } // relation inverse
 
 },
 { versionKey: false });
